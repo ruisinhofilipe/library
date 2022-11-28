@@ -14,7 +14,7 @@
     margin-top: 2rem;
 }
 
-.newBook {
+.newBookContainer {
     margin: 2rem 0rem;
     background-color: rgb(193, 178, 160);
     width: 25%;
@@ -40,4 +40,15 @@
 
 button:hover {
     cursor: pointer;
+}
+
+.displayContainer {
+    width: 90%;
+    background-color: rgb(193, 178, 160);
+}
+
+.displayBookContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: brown;
 }
