@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Book Library</h1>
+    <div class="container">
+
+        <!--New Books's information container -->
+        <div class="newBook">
+            <div class="newBook2ndContainer">
+                <label for="book">Book:</label>
+                <input type="text" name="book" id="name">
+            </div>
+            <div class="newBook2ndContainer">
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author">
+            </div>
+            <div class="newBook2ndContainer">
+                <label for="pages">Number of pages</label>
+                <input type="number" name="pages" id="pages">
+            </div>
+            <div class="newBook2ndContainer">
+                <p>Read:
+                    <input type="radio" name="readOrNot" id="Yes">
+                    <label for="Yes">Yes</label>
+                    <input type="radio" name="readOrNot" id="No">
+                    <label for="No">No</label>
+                </p>
+            </div>
+        </div>
+
+        <button class="addButton" type="button">Add a new Book</button>
+    </div>
+</body>
+
+</html>
