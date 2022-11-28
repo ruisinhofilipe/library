@@ -11,12 +11,11 @@ function Book(name, author, pages, read) {
 
 
 // New Book information container
-
-
+const newBookContainer = document.querySelector('.newBook');
 
 //Getting add book button
-const addBook = document.querySelector('.addButton');
-addBook.addEventListener('click', (e) => {
-    e.target.style.backgroundColor = 'red';
-})
+// const addBook = document.querySelector('.addButton');
+// addBook.addEventListener('click', () => {
+//     newBookContainer.style.display = 'none';
+// })
 

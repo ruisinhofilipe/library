@@ -11,9 +11,8 @@
 </head>
 
 <body>
-    <h1>Book Library</h1>
     <div class="container">
-
+        <h1 class="h1">Book Library</h1>
         <!--New Books's information container -->
         <div class="newBook">
             <div class="newBook2ndContainer">
@@ -25,19 +24,22 @@
                 <input type="text" name="author" id="author">
             </div>
             <div class="newBook2ndContainer">
-                <label for="pages">Number of pages</label>
+                <label for="pages">Number of pages:</label>
                 <input type="number" name="pages" id="pages">
             </div>
             <div class="newBook2ndContainer">
-                <p>Read:
+                <p>Read:</p>
+                <div class="yesCheck">
                     <input type="radio" name="readOrNot" id="Yes">
                     <label for="Yes">Yes</label>
+                </div>
+                <div class="noCheck">
                     <input type="radio" name="readOrNot" id="No">
                     <label for="No">No</label>
-                </p>
+                </div>
             </div>
+            <button class="newBookButton" type="button">Add</button>
         </div>
-
         <button class="addButton" type="button">Add a new Book</button>
     </div>
 </body>
