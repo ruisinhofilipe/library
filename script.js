@@ -6,29 +6,17 @@ let readYesOrNo;
 const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
 
-function Book() {
-
-}
-
-Book.prototype.fullInfo = function () {
-    return `${this.name} by ${this.author} has ${this.pages} pages. Read status: ${this.read}`
-}
-
-function addBookLibrary(name, author, pages, read) {
-    this.name = name
+function Book(title, author, pages, read) {
+    this.title = title
     this.author = author
     this.pages = pages
     this.read = read
 }
 
-addBookLibrary.prototype = Object.create(Book.prototype);
-
-// Reset book variables
-function resetVariables() {
-    bookName = '';
-    authorName = '';
-    pagesNumber = '';
-    readYesOrNo = '';
+function addBookLibrary(title, author, pages, read) {
+    let book = new Book(title, author, pages, read);
+    myLibrary.push(book);
+    displayBook(myLibrary);
 }
 
 // Clear input values
@@ -41,29 +29,27 @@ function clearInputValues() {
     }
 }
 
-// Display of each book's informations
-function displayBook(a, b, c, d) {
+// Display of each books informations
+function displayBook(array) {
 
-    // create and append book display container to the parent display container 
-    let displayBookContainer = document.createElement('div');
-    displayBookContainer.classList.add('displayBookContainer');
-    displayContainer.appendChild(displayBookContainer);
+    // Remove the other cards displayed, otherwise it's gonna reprint the whole array instead of print the new element only
+    const removeCards = document.querySelectorAll('.displayBookContainer');
+    for (let i = 0; i < removeCards.length; i++) {
+        removeCards[i].remove();
+    }
 
-    // create p that will display the book information
-    let pBookName = document.createElement('p');
-    let pAuthorName = document.createElement('p');
-    let pPagesNumber = document.createElement('p');
-    let pReadStatus = document.createElement('p');
-
-    pBookName.textContent = `Book name: ${a}`;
-    pAuthorName.textContent = `Author name: ${b}`;
-    pPagesNumber.textContent = `Pages: ${c}`;
-    pReadStatus.textContent = `Read status: ${d}`;
-
-    displayBookContainer.appendChild(pBookName);
-    displayBookContainer.appendChild(pAuthorName);
-    displayBookContainer.appendChild(pPagesNumber);
-    displayBookContainer.appendChild(pReadStatus);
+    array.forEach(e => {
+        // create and append book display container to the parent display container 
+        const displayBookContainer = document.createElement('div');
+        displayBookContainer.classList.add('displayBookContainer');
+        displayContainer.appendChild(displayBookContainer);
+        for (let key in e) {
+            // for each key, create a P and give it a text of key's value;
+            const pBook = document.createElement('p');
+            pBook.textContent = `${key}: ${e[key]}`;
+            displayBookContainer.appendChild(pBook);
+        }
+    });
 }
 
 // When add book button is pressed
@@ -73,14 +59,8 @@ button.addEventListener('click', () => {
     authorName = document.querySelector('[name="author"]').value;
     pagesNumber = document.querySelector('[name = "pages"]').value;
     readYesOrNo = document.querySelector('[name = "readOrNot"]:checked').value;
-    const b1 = new addBookLibrary(bookName, authorName, pagesNumber, readYesOrNo);
-    myLibrary.push(b1.fullInfo());
-    displayBook(bookName, authorName, pagesNumber, readYesOrNo);
-    resetVariables();
+    addBookLibrary(bookName, authorName, pagesNumber, readYesOrNo);
     clearInputValues();
 });
-
-
-
 
 

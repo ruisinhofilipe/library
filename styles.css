@@ -45,6 +45,7 @@ button:hover {
 .displayContainer {
     width: 90%;
     background-color: rgb(193, 178, 160);
+    display: flex;
 }
 
 .displayBookContainer {
