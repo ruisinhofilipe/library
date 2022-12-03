@@ -11,38 +11,40 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="h1">Book Library</h1>
-        <!--New Books's information container -->
-        <div class="newBookContainer">
-            <div class="newBook2ndContainer">
-                <label for="book">Book:</label>
-                <input type="text" name="book" id="name">
-            </div>
-            <div class="newBook2ndContainer">
-                <label for="author">Author:</label>
-                <input type="text" name="author" id="author">
-            </div>
-            <div class="newBook2ndContainer">
-                <label for="pages">Number of pages:</label>
-                <input type="number" name="pages" id="pages">
-            </div>
-            <div class="newBook2ndContainer">
-                <p>Read:</p>
-                <div class="check">
-                    <input type="radio" name="readOrNot" id="Yes" value="Yes">
-                    <label for="Yes">Yes</label>
+    <form id="addBook" action="" method="get">
+        <div class="container">
+            <h1 class="h1">Book Library</h1>
+            <!--New Books's information container -->
+            <div class="newBookContainer">
+                <div class="newBook2ndContainer">
+                    <label for="book">Book:</label>
+                    <input type="text" name="book" id="name">
                 </div>
-                <div class="noCheck">
-                    <input type="radio" name="readOrNot" id="No" value="No">
-                    <label for="No">No</label>
+                <div class="newBook2ndContainer">
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" id="author">
                 </div>
+                <div class="newBook2ndContainer">
+                    <label for="pages">Number of pages:</label>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <div class="newBook2ndContainer">
+                    <p>Read:</p>
+                    <div class="check">
+                        <input type="radio" name="readOrNot" id="Yes" value="Yes">
+                        <label for="Yes">Yes</label>
+                    </div>
+                    <div class="noCheck">
+                        <input type="radio" name="readOrNot" id="No" value="No">
+                        <label for="No">No</label>
+                    </div>
+                </div>
+                <button class="newBookButton" type="submit" name="add_button" id="add_button">Add</button>
             </div>
-            <button class="newBookButton" type="button">Add</button>
-        </div>
-        <div class="displayContainer">
-            <p>brasil</p>
-        </div>
+    </form>
+    <div class="displayContainer">
+        <p>brasil</p>
+    </div>
     </div>
 </body>
 

@@ -1,8 +1,4 @@
 let myLibrary = [];
-let bookName;
-let authorName;
-let pagesNumber;
-let readYesOrNo;
 const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
 
@@ -14,53 +10,68 @@ function Book(title, author, pages, read) {
 }
 
 function addBookLibrary(title, author, pages, read) {
-    let book = new Book(title, author, pages, read);
+    const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    displayBook(myLibrary);
+    displayBook();
 }
 
-// Clear input values
-function clearInputValues() {
-    let elements = document.getElementsByTagName("input");
+function formData() {
+    let title = document.querySelector('[name="book"]').value;
+    let author = document.querySelector('[name="author"]').value;
+    let pages = document.querySelector('[name = "pages"]').value;
+    let readStatus = document.querySelector('[name = "readOrNot"]:checked').value;
+
+    // if (document.querySelector('[name = "readOrNot"]:checked').value === true) {
+    //     readStatus = 'read';
+    // } else {
+    //     readStatus = 'not read';
+    // }
+
+    if ((title == "") || (author == "") || (pages == "")) {
+        alert("Please fill all the elements in the form");
+    }
+    console.log(document.querySelector('[name = "readOrNot"]:checked').value)
+    addBookLibrary(title, author, pages, readStatus);
+}
+
+function resetVariables() {
+    let elements = document.getElementsByTagName('input');
     for (let i = 0; i < elements.length; i++) {
-        if (elements[i].type == 'text' || elements[i].type == 'number') {
+        if (elements[i].type == 'text' || elements[i].type == 'number' || elements[i].type == 'radio') {
             elements[i].value = '';
         }
     }
 }
 
-// Display of each books informations
-function displayBook(array) {
-
-    // Remove the other cards displayed, otherwise it's gonna reprint the whole array instead of print the new element only
-    const removeCards = document.querySelectorAll('.displayBookContainer');
-    for (let i = 0; i < removeCards.length; i++) {
-        removeCards[i].remove();
+function displayBook() {
+    const removeDisplayBook = document.querySelectorAll('.displayBookContainer');
+    for (let i = 0; i < removeDisplayBook.length; i++) {
+        removeDisplayBook[i].remove();
     }
 
-    array.forEach(e => {
-        // create and append book display container to the parent display container 
+    document.querySelector('.newBookButton').addEventListener('click', (e) => {
+        e.preventDefault();
+    });
+
+    myLibrary.forEach(element => {
         const displayBookContainer = document.createElement('div');
         displayBookContainer.classList.add('displayBookContainer');
+        // displayBookContainer.setAttribute("data-index", `${arrayIndex}`);
         displayContainer.appendChild(displayBookContainer);
-        for (let key in e) {
+        for (let key in element) {
             // for each key, create a P and give it a text of key's value;
             const pBook = document.createElement('p');
-            pBook.textContent = `${key}: ${e[key]}`;
+            pBook.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: ${element[key]}`;
             displayBookContainer.appendChild(pBook);
         }
     });
-}
+};
 
-// When add book button is pressed
-const button = document.querySelector('.newBookButton');
-button.addEventListener('click', () => {
-    bookName = document.querySelector('[name="book"]').value;
-    authorName = document.querySelector('[name="author"]').value;
-    pagesNumber = document.querySelector('[name = "pages"]').value;
-    readYesOrNo = document.querySelector('[name = "readOrNot"]:checked').value;
-    addBookLibrary(bookName, authorName, pagesNumber, readYesOrNo);
-    clearInputValues();
+const addBookButton = document.querySelector('.newBookButton');
+addBookButton.addEventListener('click', () => {
+    formData();
+    resetVariables();
 });
 
-
+addBookLibrary('Sample1', 'random1', 1, 'Yes');
+addBookLibrary('Sample2', 'random2', 2, 'No');
