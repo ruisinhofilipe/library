@@ -1,6 +1,7 @@
 let myLibrary = [];
 const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
+var index = -1;
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -39,9 +40,9 @@ function resetVariables() {
     for (let i = 0; i < elements.length; i++) {
         if (elements[i].type == 'text' || elements[i].type == 'number' || elements[i].type == 'radio') {
             elements[i].value = '';
-        }
-    }
-}
+        };
+    };
+};
 
 function displayBook() {
     const removeDisplayBook = document.querySelectorAll('.displayBookContainer');
@@ -56,22 +57,35 @@ function displayBook() {
     myLibrary.forEach(element => {
         const displayBookContainer = document.createElement('div');
         displayBookContainer.classList.add('displayBookContainer');
-        // displayBookContainer.setAttribute("data-index", `${arrayIndex}`);
+        displayBookContainer.setAttribute("data-index", index);
         displayContainer.appendChild(displayBookContainer);
+        index++;
         for (let key in element) {
             // for each key, create a P and give it a text of key's value;
             const pBook = document.createElement('p');
             pBook.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: ${element[key]}`;
             displayBookContainer.appendChild(pBook);
         }
+        //Delete button so we can remove a book from our library
+        const deleteBookButton = document.createElement('button');
+        deleteBookButton.classList.add('deleteBookButton');
+        deleteBookButton.textContent = 'Delete book';
+        displayBookContainer.appendChild(deleteBookButton);
+
+        deleteBookButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            displayBook();
+        });
     });
 };
 
 const addBookButton = document.querySelector('.newBookButton');
 addBookButton.addEventListener('click', () => {
+    index = 0;
     formData();
     resetVariables();
 });
 
 addBookLibrary('Sample1', 'random1', 1, 'Yes');
 addBookLibrary('Sample2', 'random2', 2, 'No');
+
