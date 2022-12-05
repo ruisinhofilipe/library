@@ -73,6 +73,7 @@ function displayBook() {
                     readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: No`;
                     displayBookContainer.appendChild(readButton);
                 };
+                //Change button class according to the boook's read status
                 readButton.addEventListener('click', (e) => {
                     if (element[key] === true) {
                         element[key] = false;
