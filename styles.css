@@ -53,3 +53,11 @@ button:hover {
     flex-direction: column;
     background-color: brown;
 }
+
+.readYesButton {
+    background-color: rgb(100, 220, 100);
+}
+
+.readNoButton {
+    background-color: rgb(212, 53, 53);
+}

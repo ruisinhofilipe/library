@@ -20,19 +20,19 @@ function formData() {
     let title = document.querySelector('[name="book"]').value;
     let author = document.querySelector('[name="author"]').value;
     let pages = document.querySelector('[name = "pages"]').value;
-    let readStatus = document.querySelector('[name = "readOrNot"]:checked').value;
+    let readStatus = document.querySelector('[name = "readOrNot"]').checked;
+    // document.querySelector('.messageCheckbox').checked
 
     // if (document.querySelector('[name = "readOrNot"]:checked').value === true) {
     //     readStatus = 'read';
     // } else {
     //     readStatus = 'not read';
     // }
-
     if ((title == "") || (author == "") || (pages == "")) {
         alert("Please fill all the elements in the form");
+    } else {
+        addBookLibrary(title, author, pages, readStatus);
     }
-    console.log(document.querySelector('[name = "readOrNot"]:checked').value)
-    addBookLibrary(title, author, pages, readStatus);
 }
 
 function resetVariables() {
@@ -62,9 +62,36 @@ function displayBook() {
         index++;
         for (let key in element) {
             // for each key, create a P and give it a text of key's value;
-            const pBook = document.createElement('p');
-            pBook.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: ${element[key]}`;
-            displayBookContainer.appendChild(pBook);
+            if (key == 'read') {
+                const readButton = document.createElement('button');
+                if (element[key] === true) {
+                    readButton.classList.add('readYesButton');
+                    readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: Yes`;
+                    displayBookContainer.appendChild(readButton);
+                } else {
+                    readButton.classList.add('readNoButton');
+                    readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: No`;
+                    displayBookContainer.appendChild(readButton);
+                };
+                readButton.addEventListener('click', (e) => {
+                    if (element[key] === true) {
+                        element[key] = false;
+                        readButton.classList.remove('readYesButton');
+                        readButton.classList.add('readNoButton');
+                        readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: No`;
+                    } else if (element[key] === false) {
+                        element[key] = true;
+                        readButton.classList.remove('readNoButton');
+                        readButton.classList.add('readYesButton');
+                        readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: Yes`;
+                    }
+                    e.preventDefault();
+                });
+            } else {
+                const pBook = document.createElement('p');
+                pBook.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: ${element[key]}`;
+                displayBookContainer.appendChild(pBook);
+            }
         }
         //Delete button so we can remove a book from our library
         const deleteBookButton = document.createElement('button');
@@ -72,6 +99,7 @@ function displayBook() {
         deleteBookButton.textContent = 'Delete book';
         displayBookContainer.appendChild(deleteBookButton);
 
+        //Delete button functionality
         deleteBookButton.addEventListener('click', (e) => {
             e.preventDefault();
             index = 0;
@@ -90,6 +118,6 @@ addBookButton.addEventListener('click', () => {
     resetVariables();
 });
 
-addBookLibrary('Sample1', 'random1', 1, 'Yes');
-addBookLibrary('Sample2', 'random2', 2, 'No');
+addBookLibrary('Sample1', 'random1', 1, true);
+addBookLibrary('Sample2', 'random2', 2, false);
 
