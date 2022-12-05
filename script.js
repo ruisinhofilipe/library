@@ -74,7 +74,11 @@ function displayBook() {
 
         deleteBookButton.addEventListener('click', (e) => {
             e.preventDefault();
+            index = 0;
+            let indexBook = displayBookContainer.getAttribute('data-index');
+            myLibrary.splice(indexBook, 1);
             displayBook();
+            indexBook = 0;
         });
     });
 };
