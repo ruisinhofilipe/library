@@ -45,13 +45,22 @@ button:hover {
 .displayContainer {
     width: 90%;
     background-color: rgb(193, 178, 160);
-    display: flex;
+    display: grid;
+    border-radius: 1rem;
+    grid-template-columns: repeat(auto-fit, 150px);
+    gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
 .displayBookContainer {
     display: flex;
     flex-direction: column;
-    background-color: brown;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgb(146, 129, 108);
+    word-wrap: break-word
 }
 
 .readYesButton {
@@ -60,4 +69,15 @@ button:hover {
 
 .readNoButton {
     background-color: rgb(212, 53, 53);
+}
+
+.deleteBookButton,
+.readNoButton,
+.readYesButton {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    max-width: 67%;
+    min-height: 50px;
+    align-self: center;
 }

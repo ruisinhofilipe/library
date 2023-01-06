@@ -13,8 +13,7 @@ class Book {
 }
 
 function addBookLibrary(title, author, pages, read) {
-    const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
+    myLibrary.push(new Book(title, author, pages, read));
     displayBook();
 }
 
@@ -44,10 +43,12 @@ function displayBook() {
     document.querySelector('.newBookButton').addEventListener('click', (e) => {
         e.preventDefault();
     });
+
     const removeDisplayBook = document.querySelectorAll('.displayBookContainer');
     for (let i = 0; i < removeDisplayBook.length; i++) {
         removeDisplayBook[i].remove();
     }
+
     index = 0
 
     myLibrary.forEach(element => {
@@ -111,6 +112,6 @@ addBookButton.addEventListener('click', () => {
     resetVariables();
 });
 
+
 addBookLibrary('Sample1', 'random1', 1, true);
 addBookLibrary('Sample2', 'random2', 2, false);
-
