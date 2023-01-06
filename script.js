@@ -1,7 +1,7 @@
 let myLibrary = [];
 const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
-let index = -1;
+let index = 0;
 
 class Book {
     constructor(title, author, pages, read) {
@@ -41,23 +41,22 @@ function resetVariables() {
 };
 
 function displayBook() {
+    document.querySelector('.newBookButton').addEventListener('click', (e) => {
+        e.preventDefault();
+    });
     const removeDisplayBook = document.querySelectorAll('.displayBookContainer');
     for (let i = 0; i < removeDisplayBook.length; i++) {
         removeDisplayBook[i].remove();
     }
-
-    document.querySelector('.newBookButton').addEventListener('click', (e) => {
-        e.preventDefault();
-    });
+    index = 0
 
     myLibrary.forEach(element => {
         const displayBookContainer = document.createElement('div');
         displayBookContainer.classList.add('displayBookContainer');
         displayBookContainer.setAttribute("data-index", index);
-        index++;
         displayContainer.appendChild(displayBookContainer);
         for (let key in element) {
-            // for each key, create a P and give it a text of key's value;
+            //  for each key, create a P and give it a text of key's value;
             if (key == 'read') {
                 const readButton = document.createElement('button');
                 if (element[key] === true) {
@@ -89,6 +88,7 @@ function displayBook() {
                 displayBookContainer.appendChild(pBook);
             }
         }
+        index++;
         //Delete button so we can remove a book from our library
         const deleteBookButton = document.createElement('button');
         deleteBookButton.classList.add('deleteBookButton');
@@ -98,18 +98,15 @@ function displayBook() {
         //Delete button functionality
         deleteBookButton.addEventListener('click', (e) => {
             e.preventDefault();
-            index = 0;
             let indexBook = displayBookContainer.getAttribute('data-index');
             myLibrary.splice(indexBook, 1);
-            displayBook();
-            indexBook = 0;
+            displayBookContainer.remove();
         });
     });
 };
 
 const addBookButton = document.querySelector('.newBookButton');
 addBookButton.addEventListener('click', () => {
-    index = 0;
     formData();
     resetVariables();
 });
