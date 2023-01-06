@@ -1,7 +1,7 @@
 let myLibrary = [];
 const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
-var index = -1;
+let index = -1;
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -21,13 +21,7 @@ function formData() {
     let author = document.querySelector('[name="author"]').value;
     let pages = document.querySelector('[name = "pages"]').value;
     let readStatus = document.querySelector('[name = "readOrNot"]').checked;
-    // document.querySelector('.messageCheckbox').checked
 
-    // if (document.querySelector('[name = "readOrNot"]:checked').value === true) {
-    //     readStatus = 'read';
-    // } else {
-    //     readStatus = 'not read';
-    // }
     if ((title == "") || (author == "") || (pages == "")) {
         alert("Please fill all the elements in the form");
     } else {
@@ -58,33 +52,32 @@ function displayBook() {
         const displayBookContainer = document.createElement('div');
         displayBookContainer.classList.add('displayBookContainer');
         displayBookContainer.setAttribute("data-index", index);
-        displayContainer.appendChild(displayBookContainer);
         index++;
+        displayContainer.appendChild(displayBookContainer);
         for (let key in element) {
             // for each key, create a P and give it a text of key's value;
             if (key == 'read') {
                 const readButton = document.createElement('button');
                 if (element[key] === true) {
-                    readButton.classList.add('readYesButton');
+                    readButton.className = 'readYesButton';
                     readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: Yes`;
                     displayBookContainer.appendChild(readButton);
                 } else {
-                    readButton.classList.add('readNoButton');
+                    readButton.className = 'readNoButton';
                     readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: No`;
                     displayBookContainer.appendChild(readButton);
                 };
-                //Change button class according to the boook's read status
+                //Change button class according to the book's read status
                 readButton.addEventListener('click', (e) => {
                     if (element[key] === true) {
                         element[key] = false;
-                        readButton.classList.remove('readYesButton');
-                        readButton.classList.add('readNoButton');
                         readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: No`;
+                        readButton.className = 'readNoButton';
+                        // readButton.classList.add('readNoButton');
                     } else if (element[key] === false) {
                         element[key] = true;
-                        readButton.classList.remove('readNoButton');
-                        readButton.classList.add('readYesButton');
                         readButton.textContent = `${`${key[0].toUpperCase()}${key.substring(1)}`}: Yes`;
+                        readButton.className = 'readYesButton';
                     }
                     e.preventDefault();
                 });
