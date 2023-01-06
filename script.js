@@ -3,11 +3,13 @@ const mainContainer = document.querySelector('.container');
 const displayContainer = document.querySelector('.displayContainer');
 let index = -1;
 
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
 }
 
 function addBookLibrary(title, author, pages, read) {
